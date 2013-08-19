@@ -10,7 +10,7 @@ case class Position(x: Int, y: Int)
  val data = random2DimArray(12, 15)
 
  var players = collection.mutable.Map.empty[String, Position]
- lazy val pl = players.values.toList
+ var pl = players.values.toList
  /*("p1" -> (1,0),
  	"p2"->(1,1), "p3"->(1,3), "p4"->(1,4), "p5"->(1,5),
  	"p2.2"->(2,1), "p3.2"->(2,3), "p4.2"->(2,4), "p5.2"->(2,5),
@@ -21,11 +21,10 @@ case class Position(x: Int, y: Int)
 
 def posList(pos: Position) = List[Position](pos)
 
- def randomPosition :Position = {
-   val pos = new Position(random.nextInt(11), random.nextInt(14))
-   if(data(pos.x)(pos.y).equals(1)) { 
-   	if (pl.contains(posList(pos))) randomPosition 
-   	else pos   	
+def randomPosition :Position = {
+    val pos = new Position(random.nextInt(11), random.nextInt(14))
+   if(data(pos.x)(pos.y).equals(1)) {
+   	if (pl.contains(posList(pos))) randomPosition else pos
   } else randomPosition
 }
 
@@ -41,13 +40,14 @@ def posList(pos: Position) = List[Position](pos)
 		  
 		}*/
 
-def users = for(i <- 0 until 10) addPlayer("p" + i.toString)
+def users = for(i <- 0 until 15) addPlayer("p" + i.toString)
 def li = players.values.toList
 def liDi = li.distinct
 users
+addPlayer("u")
 println(li)
 println(liDi)
-players.values
+players.values.toList
 
 
 	
